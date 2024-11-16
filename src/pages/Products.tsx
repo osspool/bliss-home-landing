@@ -5,7 +5,14 @@ import ProductGrid from "@/components/products/ProductGrid";
 import ProductFilters from "@/components/products/ProductFilters";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { Pagination } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
