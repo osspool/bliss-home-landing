@@ -2,17 +2,57 @@ export const mockProducts = [
   {
     _id: "1",
     name: "Luxury Sofa",
-    description: "Modern 3-seater sofa with premium fabric",
+    description: `
+      <h2>Premium Comfort Meets Elegance</h2>
+      <p>Experience unparalleled comfort with our signature luxury sofa. Crafted with the finest materials and attention to detail, this piece becomes the centerpiece of any living space.</p>
+      
+      <h3>Key Features</h3>
+      <ul>
+        <li>Premium fabric upholstery</li>
+        <li>Ergonomic design for maximum comfort</li>
+        <li>Solid hardwood frame</li>
+        <li>High-resilience foam cushioning</li>
+      </ul>
+      
+      <h3>Dimensions</h3>
+      <p>Width: 220cm<br>Depth: 95cm<br>Height: 85cm</p>
+      
+      <h3>Care Instructions</h3>
+      <p>Professional cleaning recommended. Vacuum regularly and avoid direct sunlight to maintain fabric quality.</p>
+    `,
     basePrice: 1299.99,
-    images: ["/placeholder.svg"],
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     category: { _id: "c1", name: "Living Room" },
     variations: [
       {
         name: "Color",
         options: [
           { value: "Beige", priceModifier: 0, quantity: 5 },
-          { value: "Gray", priceModifier: 100, quantity: 3 }
+          { value: "Gray", priceModifier: 100, quantity: 3 },
+          { value: "Navy", priceModifier: 150, quantity: 2 }
         ]
+      },
+      {
+        name: "Material",
+        options: [
+          { value: "Premium Fabric", priceModifier: 0, quantity: 5 },
+          { value: "Velvet", priceModifier: 200, quantity: 3 },
+          { value: "Leather", priceModifier: 500, quantity: 2 }
+        ]
+      }
+    ],
+    reviews: [
+      {
+        rating: 5,
+        comment: "Absolutely stunning piece of furniture. The quality is exceptional and it's even more comfortable than I expected.",
+        author: "Sarah M.",
+        date: "2024-01-15"
+      },
+      {
+        rating: 4,
+        comment: "Beautiful sofa, great quality. Delivery was smooth and professional.",
+        author: "James P.",
+        date: "2024-01-10"
       }
     ]
   },
