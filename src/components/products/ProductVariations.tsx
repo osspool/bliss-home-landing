@@ -25,15 +25,15 @@ export const ProductVariations = ({
   onVariationChange,
 }: ProductVariationsProps) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {variations.map((variation) => (
-        <Card key={variation.name} className="p-6">
-          <h3 className="text-lg font-serif mb-4">{variation.name}</h3>
+        <Card key={variation.name} className="p-4">
+          <h3 className="text-sm font-medium mb-3">{variation.name}</h3>
           <RadioGroup
             value={selectedVariations[variation.name]}
             onValueChange={(value) => onVariationChange(variation.name, value)}
           >
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="flex flex-col space-y-2">
               {variation.options.map((option) => (
                 <div key={option.value}>
                   <RadioGroupItem
@@ -43,9 +43,14 @@ export const ProductVariations = ({
                   />
                   <Label
                     htmlFor={`${variation.name}-${option.value}`}
-                    className="flex items-center justify-center px-4 py-3 border rounded-md cursor-pointer transition-all hover:border-luxury-gold peer-data-[state=checked]:border-luxury-gold peer-data-[state=checked]:bg-luxury-cream"
+                    className="flex items-center justify-between px-3 py-2 border rounded-md cursor-pointer transition-all hover:border-luxury-gold peer-data-[state=checked]:border-luxury-gold peer-data-[state=checked]:bg-luxury-cream"
                   >
-                    {option.value}
+                    <span>{option.value}</span>
+                    {option.priceModifier > 0 && (
+                      <span className="text-sm text-muted-foreground">
+                        +${option.priceModifier}
+                      </span>
+                    )}
                   </Label>
                 </div>
               ))}

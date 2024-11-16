@@ -53,8 +53,8 @@ const ProductDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-grow">
-        <div className="luxury-container py-12">
+      <main className="flex-grow pt-24 md:pt-28">
+        <div className="luxury-container py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <ProductImageGallery images={product.images} productName={product.name} />
 

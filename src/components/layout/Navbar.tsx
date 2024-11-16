@@ -1,5 +1,6 @@
 import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -19,6 +20,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="left">
               <div className="flex flex-col gap-4 mt-8">
+                <Link to="/products" className="text-lg">All Products</Link>
                 <a href="#" className="text-lg">Living Room</a>
                 <a href="#" className="text-lg">Dining</a>
                 <a href="#" className="text-lg">Bedroom</a>
@@ -27,11 +29,14 @@ const Navbar = () => {
             </SheetContent>
           </Sheet>
 
-          <a href="/" className="font-serif text-2xl md:text-3xl">
+          <Link to="/" className="font-serif text-2xl md:text-3xl">
             Bliss Home
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center space-x-8">
+            <Link to="/products" className="text-sm hover:text-luxury-gold transition-colors">
+              All Products
+            </Link>
             <a href="#" className="text-sm hover:text-luxury-gold transition-colors">
               Living Room
             </a>
