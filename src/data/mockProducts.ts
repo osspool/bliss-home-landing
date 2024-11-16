@@ -88,3 +88,21 @@ export const mockCategories = [
   { _id: "c3", name: "Bedroom" },
   { _id: "c4", name: "Accessories" }
 ];
+
+export const mockCartItems = [
+  {
+    _id: "cart-item-1",
+    product: mockProducts[0],
+    variations: {
+      Color: "Beige",
+      Material: "Premium Fabric"
+    },
+    quantity: 2
+  },
+  {
+    _id: "cart-item-2",
+    product: mockProducts[1],
+    variations: {},
+    quantity: 1
+  }
+];

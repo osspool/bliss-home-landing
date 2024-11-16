@@ -134,11 +134,11 @@ const Cart = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>${calculateSubtotal().toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between font-medium text-lg pt-4 border-t">
                       <span>Total</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>${calculateSubtotal().toFixed(2)}</span>
                     </div>
                     <Button className="w-full" size="lg">
                       Proceed to Checkout

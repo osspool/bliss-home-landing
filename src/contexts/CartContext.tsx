@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { Cart, CartItem } from "@/types/cart";
+import { mockCartItems } from "@/data/mockProducts";
 
 interface CartContextType {
   cart: Cart | null;
@@ -14,7 +15,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<Cart | null>({
     _id: "mock-cart-id",
-    items: [],
+    items: mockCartItems,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   });
