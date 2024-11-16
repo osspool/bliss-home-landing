@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import { ProductImageGallery } from "@/components/products/ProductImageGallery";
 import { ProductVariations } from "@/components/products/ProductVariations";
 import { ProductReviews } from "@/components/products/ProductReviews";
+import { ProductRecommendations } from "@/components/products/ProductRecommendations";
 import { mockProducts } from "@/data/mockProducts";
 
 const ProductDetail = () => {
@@ -116,6 +117,10 @@ const ProductDetail = () => {
                 <div
                   className="formatted-content"
                   dangerouslySetInnerHTML={{ __html: product.description }}
+                />
+                <ProductRecommendations 
+                  currentProductId={product._id}
+                  currentCategory={product.category}
                 />
               </TabsContent>
               <TabsContent value="reviews" className="mt-8">
