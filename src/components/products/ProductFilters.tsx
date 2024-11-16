@@ -1,24 +1,15 @@
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Slider } from "@/components/ui/slider";
+import { mockCategories } from "@/data/mockProducts";
 
 const ProductFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const selectedTags = searchParams.getAll("tags");
   const selectedCategory = searchParams.get("category");
-
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const response = await fetch("/api/categories");
-      return response.json();
-    },
-  });
-
-  const commonTags = ["summer", "casual", "unisex", "luxury", "trending"];
+  const minPrice = Number(searchParams.get("minPrice")) || 0;
+  const maxPrice = Number(searchParams.get("maxPrice")) || 2000;
 
   const handleCategoryChange = (categoryId: string) => {
     setSearchParams(prev => {
@@ -32,16 +23,10 @@ const ProductFilters = () => {
     });
   };
 
-  const handleTagChange = (tag: string) => {
+  const handlePriceChange = (value: number[]) => {
     setSearchParams(prev => {
-      const tags = prev.getAll("tags");
-      if (tags.includes(tag)) {
-        const newTags = tags.filter(t => t !== tag);
-        prev.delete("tags");
-        newTags.forEach(t => prev.append("tags", t));
-      } else {
-        prev.append("tags", tag);
-      }
+      prev.set("minPrice", value[0].toString());
+      prev.set("maxPrice", value[1].toString());
       prev.set("page", "1");
       return prev;
     });
@@ -52,33 +37,34 @@ const ProductFilters = () => {
       <div className="space-y-6">
         <div>
           <h3 className="font-serif text-lg mb-4">Categories</h3>
-          <div className="space-y-3">
-            {categories?.map((category: any) => (
+          <RadioGroup
+            value={selectedCategory || ""}
+            onValueChange={handleCategoryChange}
+            className="space-y-3"
+          >
+            {mockCategories.map((category) => (
               <div key={category._id} className="flex items-center space-x-2">
-                <Checkbox
-                  id={category._id}
-                  checked={category._id === selectedCategory}
-                  onCheckedChange={() => handleCategoryChange(category._id)}
-                />
+                <RadioGroupItem value={category._id} id={category._id} />
                 <Label htmlFor={category._id}>{category.name}</Label>
               </div>
             ))}
-          </div>
+          </RadioGroup>
         </div>
 
         <div>
-          <h3 className="font-serif text-lg mb-4">Tags</h3>
-          <div className="space-y-3">
-            {commonTags.map((tag) => (
-              <div key={tag} className="flex items-center space-x-2">
-                <Checkbox
-                  id={tag}
-                  checked={selectedTags.includes(tag)}
-                  onCheckedChange={() => handleTagChange(tag)}
-                />
-                <Label htmlFor={tag} className="capitalize">{tag}</Label>
-              </div>
-            ))}
+          <h3 className="font-serif text-lg mb-4">Price Range</h3>
+          <div className="space-y-4">
+            <Slider
+              defaultValue={[minPrice, maxPrice]}
+              max={2000}
+              step={50}
+              onValueChange={handlePriceChange}
+              className="mt-6"
+            />
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>${minPrice}</span>
+              <span>${maxPrice}</span>
+            </div>
           </div>
         </div>
       </div>

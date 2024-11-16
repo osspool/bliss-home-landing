@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import ProductGrid from "@/components/products/ProductGrid";
 import ProductFilters from "@/components/products/ProductFilters";
@@ -13,27 +12,29 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { mockProducts } from "@/data/mockProducts";
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
   const category = searchParams.get("category") || "";
   const search = searchParams.get("search") || "";
+  const minPrice = Number(searchParams.get("minPrice")) || 0;
+  const maxPrice = Number(searchParams.get("maxPrice")) || Infinity;
   const limit = 8;
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["products", page, category, search],
-    queryFn: async () => {
-      const params = new URLSearchParams({
-        page: page.toString(),
-        limit: limit.toString(),
-        ...(category && { category }),
-        ...(search && { search }),
-      });
-      const response = await fetch(`/api/products?${params}`);
-      return response.json();
-    },
+  const filteredProducts = mockProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = !category || product.category._id === category;
+    const matchesPrice = product.basePrice >= minPrice && 
+                        (maxPrice === Infinity || product.basePrice <= maxPrice);
+    return matchesSearch && matchesCategory && matchesPrice;
   });
+
+  const paginatedProducts = filteredProducts.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(filteredProducts.length / limit);
 
   const handleSearch = (value: string) => {
     setSearchParams(prev => {
@@ -55,8 +56,16 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-luxury-cream">
-      <div className="container px-4 py-8">
+    <div className="min-h-screen flex flex-col bg-luxury-cream">
+      <Navbar />
+      <div className="container px-4 py-8 flex-grow">
+        <div className="mb-8">
+          <h1 className="font-serif text-3xl md:text-4xl mb-4">Our Collection</h1>
+          <p className="text-muted-foreground">
+            Discover our curated selection of luxury furniture and accessories
+          </p>
+        </div>
+
         <div className="flex flex-col md:flex-row gap-8">
           <aside className="w-full md:w-64 flex-shrink-0">
             <ProductFilters />
@@ -75,18 +84,18 @@ const Products = () => {
               </div>
             </div>
 
-            <ProductGrid products={data?.docs || []} isLoading={isLoading} />
+            <ProductGrid products={paginatedProducts} isLoading={false} />
 
-            {data && (
+            {totalPages > 1 && (
               <div className="mt-8">
                 <Pagination className="justify-center">
                   <PaginationContent>
-                    {data.hasPrevPage && (
+                    {page > 1 && (
                       <PaginationItem>
                         <PaginationPrevious onClick={() => handlePageChange(page - 1)} />
                       </PaginationItem>
                     )}
-                    {Array.from({ length: data.totalPages }, (_, i) => (
+                    {Array.from({ length: totalPages }, (_, i) => (
                       <PaginationItem key={i + 1}>
                         <PaginationLink
                           isActive={page === i + 1}
@@ -96,7 +105,7 @@ const Products = () => {
                         </PaginationLink>
                       </PaginationItem>
                     ))}
-                    {data.hasNextPage && (
+                    {page < totalPages && (
                       <PaginationItem>
                         <PaginationNext onClick={() => handlePageChange(page + 1)} />
                       </PaginationItem>
@@ -108,6 +117,7 @@ const Products = () => {
           </main>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
