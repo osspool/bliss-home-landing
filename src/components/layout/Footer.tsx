@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-luxury-cream border-t">
@@ -13,30 +15,30 @@ const Footer = () => {
           <div>
             <h4 className="font-medium mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-luxury-charcoal/80">
-              <li><a href="#" className="hover:text-luxury-gold">Living Room</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Dining</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Bedroom</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Accessories</a></li>
+              <li><Link to="/products" className="hover:text-luxury-gold">All Products</Link></li>
+              <li><Link to="/products?category=living-room" className="hover:text-luxury-gold">Living Room</Link></li>
+              <li><Link to="/products?category=dining" className="hover:text-luxury-gold">Dining</Link></li>
+              <li><Link to="/products?category=bedroom" className="hover:text-luxury-gold">Bedroom</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-medium mb-4">About</h4>
             <ul className="space-y-2 text-sm text-luxury-charcoal/80">
-              <li><a href="#" className="hover:text-luxury-gold">Our Story</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Contact</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Shipping</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Returns</a></li>
+              <li><Link to="/our-story" className="hover:text-luxury-gold">Our Story</Link></li>
+              <li><Link to="/contact" className="hover:text-luxury-gold">Contact</Link></li>
+              <li><Link to="/shipping" className="hover:text-luxury-gold">Shipping</Link></li>
+              <li><Link to="/returns" className="hover:text-luxury-gold">Returns</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-medium mb-4">Connect</h4>
             <ul className="space-y-2 text-sm text-luxury-charcoal/80">
-              <li><a href="#" className="hover:text-luxury-gold">Instagram</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Pinterest</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Facebook</a></li>
-              <li><a href="#" className="hover:text-luxury-gold">Twitter</a></li>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-luxury-gold">Instagram</a></li>
+              <li><a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-luxury-gold">Pinterest</a></li>
+              <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-luxury-gold">Facebook</a></li>
+              <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-luxury-gold">Twitter</a></li>
             </ul>
           </div>
         </div>

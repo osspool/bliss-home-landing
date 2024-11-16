@@ -1,0 +1,42 @@
+{
+  "our_story": {
+    "title": "Our Story",
+    "content": "# The Bliss Home Journey\n\nFounded in 2020, Bliss Home emerged from a passion for creating spaces that inspire and comfort. Our journey began when our founder, Sarah Chen, recognized the need for thoughtfully curated home décor that combines luxury with accessibility.\n\n## Our Philosophy\n\nAt Bliss Home, we believe that every home tells a story. Our carefully selected pieces are designed to help you write yours. We work directly with artisans and designers who share our commitment to quality, sustainability, and timeless beauty.\n\n## Our Commitment\n\nWe're dedicated to:\n- Sustainable sourcing\n- Fair trade practices\n- Supporting local artisans\n- Exceptional customer service\n\n## Looking Forward\n\nAs we continue to grow, our mission remains unchanged: to help you create spaces that reflect your personal style and bring joy to everyday living."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "content": "# Get in Touch\n\n## Customer Service Hours\nMonday - Friday: 9:00 AM - 6:00 PM EST\nSaturday: 10:00 AM - 4:00 PM EST\n\n## Contact Information\n- Email: support@blisshome.com\n- Phone: (555) 123-4567\n- Address: 123 Design District, New York, NY 10001\n\n## Customer Service\nOur dedicated team is here to assist you with:\n- Product inquiries\n- Order status\n- Returns and exchanges\n- General questions",
+    "support_email": "support@blisshome.com",
+    "phone": "(555) 123-4567",
+    "address": "123 Design District, New York, NY 10001"
+  },
+  "shipping": {
+    "title": "Shipping Information",
+    "content": "# Shipping Policy\n\n## Delivery Options\n\n### Standard Shipping\n- 5-7 business days\n- Free for orders over $150\n- $9.95 for orders under $150\n\n### Express Shipping\n- 2-3 business days\n- $24.95 flat rate\n\n### White Glove Delivery\n- Available for large furniture items\n- Includes assembly and packaging removal\n- Pricing varies by location\n\n## International Shipping\nCurrently available to Canada and select European countries. Rates calculated at checkout.",
+    "shipping_methods": [
+      {
+        "name": "Standard",
+        "time": "5-7 business days",
+        "cost": 9.95,
+        "free_threshold": 150
+      },
+      {
+        "name": "Express",
+        "time": "2-3 business days",
+        "cost": 24.95
+      }
+    ]
+  },
+  "returns": {
+    "title": "Returns & Refunds",
+    "content": "# Returns Policy\n\n## 30-Day Return Window\nWe want you to be completely satisfied with your purchase. If you're not happy with your order, you can return it within 30 days of delivery.\n\n## Return Conditions\n- Items must be unused and in original packaging\n- Original receipt or proof of purchase required\n- Return shipping costs are the responsibility of the customer\n- Store credit or refund to original payment method\n\n## Non-Returnable Items\n- Custom orders\n- Final sale items\n- Personal care items\n- Opened packaging",
+    "return_window": 30,
+    "return_shipping_cost": "customer",
+    "excluded_items": [
+      "Custom orders",
+      "Final sale items",
+      "Personal care items",
+      "Opened packaging"
+    ]
+  }
+}
