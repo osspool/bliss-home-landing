@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb3",
+        "title": "Elevate Your Living Space",
+        "subtitle": "Discover our curated collection of luxury home décor"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1631679706909-1844bbd07221",
+        "title": "Timeless Elegance",
+        "subtitle": "Handcrafted pieces for the discerning home"
+      }
+    ]
+  },
+  "categories": [
+    {
+      "id": 1,
+      "name": "Living Room",
+      "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace",
+      "description": "Create your perfect sanctuary"
+    },
+    {
+      "id": 2,
+      "name": "Dining",
+      "image": "https://images.unsplash.com/photo-1617806118233-18e1de247200",
+      "description": "Elevate your dining experience"
+    },
+    {
+      "id": 3,
+      "name": "Bedroom",
+      "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0",
+      "description": "Transform your space"
+    },
+    {
+      "id": 4,
+      "name": "Accessories",
+      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e35a6",
+      "description": "Perfect finishing touches"
+    }
+  ],
+  "featuredProducts": [
+    {
+      "id": "prod_1",
+      "name": "Artisan Ceramic Vase",
+      "price": 289.00,
+      "image": "https://images.unsplash.com/photo-1578500494198-246f612d3b3d"
+    },
+    {
+      "id": "prod_2",
+      "name": "Marble Coffee Table",
+      "price": 1299.00,
+      "image": "https://images.unsplash.com/photo-1577926375740-d5d3f2e34b3d"
+    },
+    {
+      "id": "prod_3",
+      "name": "Linen Throw Pillow",
+      "price": 129.00,
+      "image": "https://images.unsplash.com/photo-1579656381226-5fc0f0100c3b"
+    },
+    {
+      "id": "prod_4",
+      "name": "Brass Table Lamp",
+      "price": 459.00,
+      "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c"
+    }
+  ],
+  "editorial": {
+    "title": "The Art of Living",
+    "subtitle": "Where luxury meets comfort",
+    "content": "At Bliss Home, we believe that your space should be a reflection of your personal style. Our carefully curated collection brings together timeless design and contemporary elegance.",
+    "image": "https://images.unsplash.com/photo-1616486701797-0f33f61038ec"
+  }
+}
