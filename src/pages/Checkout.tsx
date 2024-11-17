@@ -13,6 +13,7 @@ import Footer from "@/components/layout/Footer";
 import CheckoutSummary from "@/components/checkout/CheckoutSummary";
 import DeliveryMethodSelector from "@/components/checkout/DeliveryMethodSelector";
 import PaymentMethodSelector from "@/components/checkout/PaymentMethodSelector";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const { cart } = useCart();
