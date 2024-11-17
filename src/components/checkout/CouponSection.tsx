@@ -25,17 +25,19 @@ const CouponSection = ({ onApplyCoupon }: CouponSectionProps) => {
   };
 
   return (
-    <div className="flex gap-2 items-start">
-      <div className="flex-grow">
+    <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
+      <h3 className="font-medium">Have a coupon?</h3>
+      <div className="flex gap-2">
         <Input
           placeholder="Enter coupon code"
           value={couponCode}
           onChange={(e) => setCouponCode(e.target.value)}
+          className="flex-grow"
         />
+        <Button onClick={handleApplyCoupon} variant="outline">
+          Apply
+        </Button>
       </div>
-      <Button onClick={handleApplyCoupon} variant="outline">
-        Apply
-      </Button>
     </div>
   );
 };
