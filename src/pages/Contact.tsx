@@ -56,6 +56,11 @@ const Contact = () => {
       <Navbar />
       <main className="flex-grow pt-24 md:pt-28">
         <div className="luxury-container py-12">
+          <h1 className="text-4xl md:text-5xl font-serif mb-8 text-center">Contact Us</h1>
+          <p className="text-center text-luxury-charcoal/80 max-w-2xl mx-auto mb-12">
+            We'd love to hear from you. Please fill out the form below or use our contact information to get in touch.
+          </p>
+
           {isLoading ? (
             <div className="space-y-4">
               <Skeleton className="h-12 w-[200px]" />
@@ -65,21 +70,17 @@ const Contact = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left Column - Content and Form */}
               <div className="space-y-8">
-                <article className="prose prose-lg max-w-none">
-                  <ReactMarkdown>{content}</ReactMarkdown>
-                </article>
-
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-8 rounded-lg shadow-md">
                   <h3 className="text-2xl font-serif mb-6">Send us a Message</h3>
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
                       <Input
                         placeholder="Your Name"
                         {...register("name", { required: "Name is required" })}
-                        className="w-full"
+                        className="w-full bg-luxury-cream/50"
                       />
                       {errors.name && (
-                        <span className="text-red-500 text-sm">{errors.name.message}</span>
+                        <span className="text-red-500 text-sm mt-1">{errors.name.message}</span>
                       )}
                     </div>
                     
@@ -94,10 +95,10 @@ const Contact = () => {
                             message: "Invalid email address"
                           }
                         })}
-                        className="w-full"
+                        className="w-full bg-luxury-cream/50"
                       />
                       {errors.email && (
-                        <span className="text-red-500 text-sm">{errors.email.message}</span>
+                        <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
                       )}
                     </div>
                     
@@ -105,14 +106,14 @@ const Contact = () => {
                       <Textarea
                         placeholder="Your Message"
                         {...register("message", { required: "Message is required" })}
-                        className="w-full min-h-[150px]"
+                        className="w-full min-h-[200px] bg-luxury-cream/50 resize-none"
                       />
                       {errors.message && (
-                        <span className="text-red-500 text-sm">{errors.message.message}</span>
+                        <span className="text-red-500 text-sm mt-1">{errors.message.message}</span>
                       )}
                     </div>
                     
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full bg-luxury-gold hover:bg-luxury-gold/90">
                       Send Message
                     </Button>
                   </form>
@@ -121,12 +122,21 @@ const Contact = () => {
 
               {/* Right Column - Map and Contact Details */}
               <div className="space-y-8">
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-8 rounded-lg shadow-md">
                   <h3 className="text-2xl font-serif mb-4">Visit Our Store</h3>
-                  <div className="space-y-2 text-luxury-charcoal/80">
-                    <p>{pagesData.contact.address}</p>
-                    <p>Phone: {pagesData.contact.phone}</p>
-                    <p>Email: {pagesData.contact.support_email}</p>
+                  <div className="space-y-4 text-luxury-charcoal/80">
+                    <p className="flex items-center gap-2">
+                      <span className="font-medium">Address:</span>
+                      {pagesData.contact.address}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="font-medium">Phone:</span>
+                      {pagesData.contact.phone}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="font-medium">Email:</span>
+                      {pagesData.contact.support_email}
+                    </p>
                   </div>
                 </div>
 
@@ -142,12 +152,21 @@ const Contact = () => {
                   </LoadScript>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-8 rounded-lg shadow-md">
                   <h3 className="text-2xl font-serif mb-4">Business Hours</h3>
                   <div className="space-y-2 text-luxury-charcoal/80">
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p>Saturday: 10:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
+                    <p className="flex justify-between">
+                      <span>Monday - Friday:</span>
+                      <span>9:00 AM - 6:00 PM</span>
+                    </p>
+                    <p className="flex justify-between">
+                      <span>Saturday:</span>
+                      <span>10:00 AM - 4:00 PM</span>
+                    </p>
+                    <p className="flex justify-between">
+                      <span>Sunday:</span>
+                      <span>Closed</span>
+                    </p>
                   </div>
                 </div>
               </div>
