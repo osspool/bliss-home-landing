@@ -41,6 +41,9 @@ const Navbar = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/signup" className="w-full cursor-pointer">Create Account</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/orders" className="w-full cursor-pointer">My Orders</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
