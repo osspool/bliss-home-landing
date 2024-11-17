@@ -1,19 +1,15 @@
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { Separator } from "@/components/ui/separator";
 import { ChevronRight, MapPin, Truck, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CheckoutSummary from "@/components/checkout/CheckoutSummary";
-import DeliveryMethodSelector from "@/components/checkout/DeliveryMethodSelector";
+import DeliveryForm from "@/components/checkout/DeliveryForm";
 import PaymentMethodSelector from "@/components/checkout/PaymentMethodSelector";
-import { Link } from "react-router-dom";
+import CouponSection from "@/components/checkout/CouponSection";
 
 const Checkout = () => {
   const { cart } = useCart();
@@ -35,6 +31,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<"cod" | "bkash">("cod");
   const [bkashNumber, setBkashNumber] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
 
   const handleDeliverySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +63,15 @@ const Checkout = () => {
     });
   };
 
+  const handleApplyCoupon = (code: string) => {
+    // In a real application, you would validate the coupon code here
+    setAppliedCoupon(code);
+    toast({
+      title: "Coupon Applied",
+      description: `Coupon code "${code}" has been applied to your order.`,
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -93,71 +99,17 @@ const Checkout = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="lg:col-span-2 space-y-6">
                 {step === "delivery" && (
                   <form onSubmit={handleDeliverySubmit} className="space-y-6">
-                    <div className="bg-white p-6 rounded-lg shadow-sm space-y-6">
-                      <h2 className="text-xl font-serif">Delivery Details</h2>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="phone">Phone Number *</Label>
-                          <Input
-                            id="phone"
-                            value={deliveryDetails.address.phone}
-                            onChange={(e) => setDeliveryDetails({
-                              ...deliveryDetails,
-                              address: { ...deliveryDetails.address, phone: e.target.value }
-                            })}
-                            placeholder="Enter your phone number"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="addressLine1">Address Line 1 *</Label>
-                          <Input
-                            id="addressLine1"
-                            value={deliveryDetails.address.addressLine1}
-                            onChange={(e) => setDeliveryDetails({
-                              ...deliveryDetails,
-                              address: { ...deliveryDetails.address, addressLine1: e.target.value }
-                            })}
-                            placeholder="Enter your address"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="city">City *</Label>
-                          <Input
-                            id="city"
-                            value={deliveryDetails.address.city}
-                            onChange={(e) => setDeliveryDetails({
-                              ...deliveryDetails,
-                              address: { ...deliveryDetails.address, city: e.target.value }
-                            })}
-                            placeholder="Enter your city"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="postalCode">Postal Code</Label>
-                          <Input
-                            id="postalCode"
-                            value={deliveryDetails.address.postalCode}
-                            onChange={(e) => setDeliveryDetails({
-                              ...deliveryDetails,
-                              address: { ...deliveryDetails.address, postalCode: e.target.value }
-                            })}
-                            placeholder="Enter postal code"
-                          />
-                        </div>
-                      </div>
-                      
-                      <DeliveryMethodSelector
-                        selected={deliveryDetails.method}
-                        onSelect={(method) => setDeliveryDetails({ ...deliveryDetails, method })}
+                    <div className="bg-white p-6 rounded-lg shadow-sm">
+                      <h2 className="text-xl font-serif mb-6">Delivery Details</h2>
+                      <DeliveryForm
+                        deliveryDetails={deliveryDetails}
+                        setDeliveryDetails={setDeliveryDetails}
                       />
                     </div>
-                    
-                    <Button type="submit" className="w-full md:w-auto">
-                      Continue to Payment
-                    </Button>
+                    <Button type="submit">Continue to Payment</Button>
                   </form>
                 )}
 
@@ -165,39 +117,12 @@ const Checkout = () => {
                   <form onSubmit={handlePaymentSubmit} className="space-y-6">
                     <div className="bg-white p-6 rounded-lg shadow-sm space-y-6">
                       <h2 className="text-xl font-serif">Payment Method</h2>
-                      
                       <PaymentMethodSelector
                         selected={paymentMethod}
                         onSelect={setPaymentMethod}
                       />
-
-                      {paymentMethod === "bkash" && (
-                        <div className="space-y-4 pt-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="bkashNumber">bKash Number</Label>
-                            <Input
-                              id="bkashNumber"
-                              value={bkashNumber}
-                              onChange={(e) => setBkashNumber(e.target.value)}
-                              placeholder="Enter your bKash number"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="transactionId">Transaction ID</Label>
-                            <Input
-                              id="transactionId"
-                              value={transactionId}
-                              onChange={(e) => setTransactionId(e.target.value)}
-                              placeholder="Enter transaction ID"
-                            />
-                          </div>
-                        </div>
-                      )}
                     </div>
-
-                    <Button type="submit" className="w-full md:w-auto">
-                      Place Order
-                    </Button>
+                    <Button type="submit">Place Order</Button>
                   </form>
                 )}
 
@@ -222,8 +147,19 @@ const Checkout = () => {
               </div>
 
               {/* Order Summary */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 space-y-6">
                 <CheckoutSummary cart={cart} deliveryMethod={deliveryDetails.method} />
+                {step !== "confirmation" && (
+                  <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
+                    <h3 className="font-medium">Have a coupon?</h3>
+                    <CouponSection onApplyCoupon={handleApplyCoupon} />
+                    {appliedCoupon && (
+                      <p className="text-sm text-green-600">
+                        Coupon "{appliedCoupon}" applied successfully!
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
