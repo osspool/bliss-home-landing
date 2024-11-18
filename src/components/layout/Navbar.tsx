@@ -22,22 +22,24 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const categories = [
   {
     id: "1",
-    name: "Furniture",
-    children: [
-      { id: "1-1", name: "Living Room", items: ["Sofas", "Coffee Tables", "TV Stands"] },
-      { id: "1-2", name: "Bedroom", items: ["Beds", "Dressers", "Nightstands"] },
-      { id: "1-3", name: "Dining Room", items: ["Dining Tables", "Chairs", "Buffets"] },
-    ],
+    name: "Living Room",
+    items: ["Sofas", "Coffee Tables", "Chairs", "Lighting"]
   },
   {
     id: "2",
-    name: "Decor",
-    children: [
-      { id: "2-1", name: "Wall Art", items: ["Paintings", "Prints", "Mirrors"] },
-      { id: "2-2", name: "Lighting", items: ["Table Lamps", "Floor Lamps", "Chandeliers"] },
-      { id: "2-3", name: "Textiles", items: ["Pillows", "Throws", "Rugs"] },
-    ],
+    name: "Bedroom",
+    items: ["Beds", "Nightstands", "Dressers", "Decor"]
   },
+  {
+    id: "3",
+    name: "Dining",
+    items: ["Tables", "Chairs", "Storage", "Lighting"]
+  },
+  {
+    id: "4",
+    name: "Decor",
+    items: ["Art", "Mirrors", "Rugs", "Accessories"]
+  }
 ];
 
 const Navbar = () => {
@@ -124,29 +126,19 @@ const Navbar = () => {
                     {category.name}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid grid-cols-2 gap-6 p-6 w-[500px] bg-white/95 backdrop-blur-sm">
-                      {category.children.map((subCategory) => (
-                        <div key={subCategory.id} className="space-y-2">
-                          <Link
-                            to={`/products?category=${subCategory.id}`}
-                            className="font-medium text-luxury-charcoal hover:text-luxury-gold"
-                          >
-                            {subCategory.name}
-                          </Link>
-                          <ul className="space-y-1">
-                            {subCategory.items.map((item, index) => (
-                              <li key={index}>
-                                <Link
-                                  to={`/products?category=${subCategory.id}&type=${item.toLowerCase()}`}
-                                  className="text-sm text-gray-600 hover:text-luxury-gold block py-1"
-                                >
-                                  {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                    <div className="p-4 w-[200px] bg-white/95 backdrop-blur-sm">
+                      <ul className="space-y-2">
+                        {category.items.map((item, index) => (
+                          <li key={index}>
+                            <Link
+                              to={`/products?category=${category.id}&type=${item.toLowerCase()}`}
+                              className="block py-2 px-3 text-sm text-gray-600 hover:text-luxury-gold hover:bg-luxury-cream/50 rounded-md transition-colors"
+                            >
+                              {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>

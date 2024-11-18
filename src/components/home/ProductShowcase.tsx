@@ -40,7 +40,7 @@ const ProductShowcase = () => {
             </Button>
           </div>
           
-          <div className="col-span-3">
+          <div className="col-span-3 pl-8">
             <Carousel
               opts={{
                 align: "start",
@@ -48,15 +48,17 @@ const ProductShowcase = () => {
               }}
               className="w-full"
             >
-              <CarouselContent>
-                {mockProducts.map((product) => (
-                  <CarouselItem key={product._id} className="md:basis-1/2 lg:basis-1/3">
-                    <ProductCard product={product} />
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {mockProducts.slice(0, 6).map((product) => (
+                  <CarouselItem key={product._id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full">
+                      <ProductCard product={product} />
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="-left-12 bg-white/80 hover:bg-white" />
+              <CarouselNext className="-right-12 bg-white/80 hover:bg-white" />
             </Carousel>
           </div>
         </div>

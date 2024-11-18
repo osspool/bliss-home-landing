@@ -27,9 +27,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const hasVariations = product.variations && product.variations.length > 0;
 
   const handleQuickAdd = () => {
-    if (hasVariations) {
-      return;
-    }
+    if (hasVariations) return;
     
     toast({
       title: "Added to Cart",
@@ -39,7 +37,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Card className="group overflow-hidden bg-white hover:shadow-xl transition-shadow duration-300">
+    <Card className="group h-full flex flex-col bg-white hover:shadow-xl transition-shadow duration-300">
       <div className="relative aspect-square overflow-hidden">
         <img
           src={product.images[0]}
@@ -66,16 +64,18 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="font-serif text-lg mb-2">{product.name}</h3>
-        <p className="text-luxury-gold font-medium">
-          ${product.basePrice.toFixed(2)}
-        </p>
-        {hasVariations && (
-          <p className="text-sm text-muted-foreground mt-2">
-            Multiple options available
+      <div className="p-4 flex-grow flex flex-col justify-between">
+        <h3 className="font-serif text-lg mb-2 line-clamp-2">{product.name}</h3>
+        <div>
+          <p className="text-luxury-gold font-medium">
+            ${product.basePrice.toFixed(2)}
           </p>
-        )}
+          {hasVariations && (
+            <p className="text-sm text-muted-foreground mt-2">
+              Multiple options available
+            </p>
+          )}
+        </div>
       </div>
     </Card>
   );
