@@ -117,34 +117,35 @@ const Navbar = () => {
           </div>
         </div>
 
-      <div className="hidden md:block border-t">
-        <NavigationMenu className="mx-auto">
-          <NavigationMenuList className="gap-6">
-            {categories.map((category) => (
-              <NavigationMenuItem key={category.id}>
-                <NavigationMenuTrigger className="h-12 text-base hover:text-luxury-gold bg-transparent hover:bg-transparent">
-                  {category.name}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="absolute left-0 p-4 w-48 bg-white shadow-lg rounded-lg mt-1">
-                    <ul className="space-y-2">
-                      {category.items.map((item, index) => (
-                        <li key={index}>
-                          <Link
-                            to={`/products?category=${category.id}&type=${item.toLowerCase()}`}
-                            className="block py-2 px-3 text-sm text-gray-600 hover:text-luxury-gold hover:bg-luxury-cream/50 rounded-md transition-colors"
-                          >
-                            {item}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="hidden md:block border-t">
+          <NavigationMenu className="mx-auto">
+            <NavigationMenuList className="gap-6">
+              {categories.map((category) => (
+                <NavigationMenuItem key={category.id}>
+                  <NavigationMenuTrigger className="h-12 text-base hover:text-luxury-gold bg-transparent hover:bg-transparent">
+                    {category.name}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="absolute left-0 p-4 w-48 bg-white shadow-lg rounded-lg mt-1">
+                      <ul className="space-y-2">
+                        {category.items.map((item, index) => (
+                          <li key={index}>
+                            <Link
+                              to={`/products?category=${category.id}&type=${item.toLowerCase()}`}
+                              className="block py-2 px-3 text-sm text-gray-600 hover:text-luxury-gold hover:bg-luxury-cream/50 rounded-md transition-colors"
+                            >
+                              {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
       </div>
     </nav>
   );
