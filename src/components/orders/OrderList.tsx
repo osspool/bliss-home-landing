@@ -29,47 +29,47 @@ interface OrderListProps {
   onCancelRequest: (orderId: string) => void;
 }
 
-const getStatusBadge = (status: string) => {
-  switch (status) {
-    case "delivered":
-      return (
-        <Badge className="bg-green-500">
-          <CheckCircle className="w-4 h-4 mr-1" />
-          Delivered
-        </Badge>
-      );
-    case "processing":
-      return (
-        <Badge className="bg-blue-500">
-          <AlertCircle className="w-4 h-4 mr-1" />
-          Processing
-        </Badge>
-      );
-    case "cancel-requested":
-      return (
-        <Badge className="bg-orange-500">
-          <XOctagon className="w-4 h-4 mr-1" />
-          Cancel Requested
-        </Badge>
-      );
-    default:
-      return (
-        <Badge variant="secondary">
-          <AlertCircle className="w-4 h-4 mr-1" />
-          {status}
-        </Badge>
-      );
-  }
-};
-
 const OrderList = ({ orders, onCancelRequest }: OrderListProps) => {
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "delivered":
+        return (
+          <Badge className="bg-green-500">
+            <CheckCircle className="w-4 h-4 mr-1" />
+            Delivered
+          </Badge>
+        );
+      case "processing":
+        return (
+          <Badge className="bg-blue-500">
+            <AlertCircle className="w-4 h-4 mr-1" />
+            Processing
+          </Badge>
+        );
+      case "cancel-requested":
+        return (
+          <Badge className="bg-orange-500">
+            <XOctagon className="w-4 h-4 mr-1" />
+            Cancel Requested
+          </Badge>
+        );
+      default:
+        return (
+          <Badge variant="secondary">
+            <AlertCircle className="w-4 h-4 mr-1" />
+            {status}
+          </Badge>
+        );
+    }
+  };
+
   return (
     <Accordion type="single" collapsible className="space-y-4">
       {orders.map((order) => (
         <AccordionItem
           key={order.id}
           value={order.id}
-          className="border rounded-lg p-4"
+          className="border rounded-lg p-4 hover:bg-gray-50 transition-colors"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-4">
@@ -95,10 +95,10 @@ const OrderList = ({ orders, onCancelRequest }: OrderListProps) => {
                   {order.items.map((item) => (
                     <li
                       key={item.id}
-                      className="flex justify-between items-center"
+                      className="flex justify-between items-center text-sm"
                     >
                       <span>
-                        {item.name} x {item.quantity}
+                        {item.name} × {item.quantity}
                       </span>
                       <span>${item.price.toFixed(2)}</span>
                     </li>
