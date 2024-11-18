@@ -13,13 +13,14 @@ import {
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { fetchOrders, type Order } from "@/lib/api";
 
 const Orders = () => {
   const { toast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 5;
   
-  const { data: orders, isLoading } = useQuery({
+  const { data: orders, isLoading } = useQuery<Order[]>({
     queryKey: ['orders'],
     queryFn: fetchOrders
   });

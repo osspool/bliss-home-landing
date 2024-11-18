@@ -24,21 +24,20 @@ const categories = [
     id: "1",
     name: "Furniture",
     children: [
-      { id: "1-1", name: "Living Room" },
-      { id: "1-2", name: "Bedroom" },
-      { id: "1-3", name: "Dining Room" },
+      { id: "1-1", name: "Living Room", items: ["Sofas", "Coffee Tables", "TV Stands"] },
+      { id: "1-2", name: "Bedroom", items: ["Beds", "Dressers", "Nightstands"] },
+      { id: "1-3", name: "Dining Room", items: ["Dining Tables", "Chairs", "Buffets"] },
     ],
   },
   {
     id: "2",
     name: "Decor",
     children: [
-      { id: "2-1", name: "Wall Art" },
-      { id: "2-2", name: "Mirrors" },
-      { id: "2-3", name: "Vases" },
+      { id: "2-1", name: "Wall Art", items: ["Paintings", "Prints", "Mirrors"] },
+      { id: "2-2", name: "Lighting", items: ["Table Lamps", "Floor Lamps", "Chandeliers"] },
+      { id: "2-3", name: "Textiles", items: ["Pillows", "Throws", "Rugs"] },
     ],
   },
-  // Add more categories as needed
 ];
 
 const Navbar = () => {
@@ -49,14 +48,14 @@ const Navbar = () => {
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
       <div className="luxury-container">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="font-serif text-2xl md:text-3xl">
+          <Link to="/" className="font-serif text-2xl md:text-3xl text-luxury-charcoal hover:text-luxury-gold transition-colors">
             Bliss Home
           </Link>
 
           <div className="hidden lg:flex items-center gap-4 flex-1 max-w-xl mx-8">
             <div className="flex w-full gap-2">
               <Select value={searchCategory} onValueChange={setSearchCategory}>
-                <SelectTrigger className="w-[140px]">
+                <SelectTrigger className="w-[140px] bg-white">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
@@ -70,7 +69,7 @@ const Navbar = () => {
               </Select>
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input className="pl-10" placeholder="Search products..." />
+                <Input className="pl-10 bg-white" placeholder="Search products..." />
               </div>
             </div>
           </div>
@@ -78,7 +77,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="hover:bg-luxury-cream">
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -96,7 +95,7 @@ const Navbar = () => {
             </DropdownMenu>
 
             <Link to="/cart">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button variant="ghost" size="icon" className="relative hover:bg-luxury-cream">
                 <ShoppingCart className="h-5 w-5" />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-luxury-gold text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -113,20 +112,34 @@ const Navbar = () => {
             <NavigationMenuList>
               {categories.map((category) => (
                 <NavigationMenuItem key={category.id}>
-                  <NavigationMenuTrigger>{category.name}</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="hover:text-luxury-gold">
+                    {category.name}
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-2 p-4">
+                    <div className="grid grid-cols-2 gap-6 p-6 w-[500px]">
                       {category.children.map((subCategory) => (
-                        <li key={subCategory.id}>
+                        <div key={subCategory.id} className="space-y-2">
                           <Link
                             to={`/products?category=${subCategory.id}`}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            className="font-medium text-luxury-charcoal hover:text-luxury-gold"
                           >
                             {subCategory.name}
                           </Link>
-                        </li>
+                          <ul className="space-y-1">
+                            {subCategory.items.map((item, index) => (
+                              <li key={index}>
+                                <Link
+                                  to={`/products?category=${subCategory.id}&type=${item.toLowerCase()}`}
+                                  className="text-sm text-gray-600 hover:text-luxury-gold block py-1"
+                                >
+                                  {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               ))}
