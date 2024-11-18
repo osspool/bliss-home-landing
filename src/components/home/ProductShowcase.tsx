@@ -11,7 +11,7 @@ import { mockProducts } from "@/data/mockProducts";
 
 const ProductShowcase = () => {
   return (
-    <section className="relative min-h-[600px] bg-luxury-cream">
+    <section className="relative py-20 bg-luxury-cream overflow-hidden">
       <div className="absolute inset-0 w-1/4">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -24,7 +24,7 @@ const ProductShowcase = () => {
         </div>
       </div>
       
-      <div className="luxury-container relative py-20">
+      <div className="luxury-container relative">
         <div className="grid grid-cols-4 gap-8">
           <div className="text-white space-y-6 z-10">
             <h2 className="text-4xl font-serif">Discover Our Latest Collection</h2>
@@ -41,25 +41,27 @@ const ProductShowcase = () => {
           </div>
           
           <div className="col-span-3 pl-8">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {mockProducts.slice(0, 6).map((product) => (
-                  <CarouselItem key={product._id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                    <div className="h-full">
-                      <ProductCard product={product} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="-left-12 bg-white/80 hover:bg-white" />
-              <CarouselNext className="-right-12 bg-white/80 hover:bg-white" />
-            </Carousel>
+            <div className="relative px-12">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {mockProducts.slice(0, 6).map((product) => (
+                    <CarouselItem key={product._id} className="pl-4 basis-1/3">
+                      <div className="h-full">
+                        <ProductCard product={product} />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white" />
+                <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white" />
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>
