@@ -125,9 +125,10 @@ const Navbar = () => {
                   <NavigationMenuTrigger className="h-12 text-base hover:text-luxury-gold bg-transparent hover:bg-transparent">
                     {category.name}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="absolute left-0 p-4 w-48 bg-white shadow-lg rounded-lg mt-1">
-                      <ul className="space-y-2">
+                  <NavigationMenuContent className="absolute top-0 left-0 w-full">
+                    <div className="w-[240px] bg-white/95 backdrop-blur-md shadow-lg rounded-lg p-6 m-2">
+                      <h3 className="font-serif text-lg mb-4 text-luxury-charcoal">{category.name}</h3>
+                      <ul className="space-y-3">
                         {category.items.map((item, index) => (
                           <li key={index}>
                             <Link

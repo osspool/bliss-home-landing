@@ -11,36 +11,30 @@ import { mockProducts } from "@/data/mockProducts";
 
 const ProductShowcase = () => {
   return (
-    <section className="relative py-20 bg-luxury-cream overflow-hidden">
-      <div className="absolute inset-0 w-1/4">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1616486338812-3dadae4b4ace)",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
+    <section className="relative py-24 bg-gradient-to-br from-luxury-cream to-luxury-beige overflow-hidden">
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-luxury-charcoal transform -skew-x-12 -translate-x-1/4">
+        <div className="absolute inset-0 bg-black/40" />
       </div>
       
       <div className="luxury-container relative">
-        <div className="grid grid-cols-4 gap-8">
-          <div className="text-white space-y-6 z-10">
-            <h2 className="text-4xl font-serif">Discover Our Latest Collection</h2>
-            <p className="text-white/90 leading-relaxed">
+        <div className="grid grid-cols-12 gap-8 items-center">
+          <div className="col-span-12 lg:col-span-4 text-white relative z-10 pr-8">
+            <h2 className="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+              Discover Our Latest Collection
+            </h2>
+            <p className="text-white/90 leading-relaxed mb-8">
               Explore our handpicked selection of luxury furniture and decor pieces
               that will transform your space into a sanctuary of style and comfort.
             </p>
             <Button
               variant="secondary"
-              className="bg-white hover:bg-luxury-gold hover:text-white"
+              className="bg-white hover:bg-luxury-gold hover:text-white transition-colors duration-300"
             >
               Shop Collection
             </Button>
           </div>
           
-          <div className="col-span-3 pl-8">
+          <div className="col-span-12 lg:col-span-8">
             <div className="relative px-12">
               <Carousel
                 opts={{
@@ -52,14 +46,14 @@ const ProductShowcase = () => {
                 <CarouselContent className="-ml-4">
                   {mockProducts.slice(0, 6).map((product) => (
                     <CarouselItem key={product._id} className="pl-4 basis-1/3">
-                      <div className="h-full">
+                      <div className="p-1">
                         <ProductCard product={product} />
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white" />
-                <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white" />
+                <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-white hover:bg-luxury-gold hover:text-white transition-colors duration-300" />
+                <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-white hover:bg-luxury-gold hover:text-white transition-colors duration-300" />
               </Carousel>
             </div>
           </div>
