@@ -5,6 +5,7 @@ import Categories from "@/components/home/Categories";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Editorial from "@/components/home/Editorial";
 import Newsletter from "@/components/home/Newsletter";
+import ProductShowcase from "@/components/home/ProductShowcase";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <main>
         <Hero />
         <Categories />
+        <ProductShowcase />
         <FeaturedProducts />
         <Editorial />
         <Newsletter />

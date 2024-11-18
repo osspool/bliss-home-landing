@@ -45,17 +45,17 @@ const Navbar = () => {
   const [searchCategory, setSearchCategory] = useState("all");
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
+    <nav className="fixed w-full bg-white/95 backdrop-blur-md z-50 border-b">
       <div className="luxury-container">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="font-serif text-2xl md:text-3xl text-luxury-charcoal hover:text-luxury-gold transition-colors">
+        <div className="flex items-center justify-between h-20">
+          <Link to="/" className="font-serif text-3xl text-luxury-charcoal hover:text-luxury-gold transition-colors">
             Bliss Home
           </Link>
 
           <div className="hidden lg:flex items-center gap-4 flex-1 max-w-xl mx-8">
             <div className="flex w-full gap-2">
               <Select value={searchCategory} onValueChange={setSearchCategory}>
-                <SelectTrigger className="w-[140px] bg-white">
+                <SelectTrigger className="w-[140px] bg-white/50 backdrop-blur-sm">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
@@ -68,8 +68,16 @@ const Navbar = () => {
                 </SelectContent>
               </Select>
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input className="pl-10 bg-white" placeholder="Search products..." />
+                <Input 
+                  className="pl-3 pr-24 bg-white/50 backdrop-blur-sm" 
+                  placeholder="Search products..." 
+                />
+                <Button 
+                  className="absolute right-0 top-0 h-full rounded-l-none bg-luxury-gold hover:bg-luxury-charcoal text-white"
+                >
+                  <Search className="h-4 w-4 mr-2" />
+                  Search
+                </Button>
               </div>
             </div>
           </div>
@@ -81,7 +89,7 @@ const Navbar = () => {
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuContent align="end" className="w-48 bg-white/95 backdrop-blur-sm">
                 <DropdownMenuItem asChild>
                   <Link to="/signin" className="w-full cursor-pointer">Sign In</Link>
                 </DropdownMenuItem>
@@ -109,14 +117,14 @@ const Navbar = () => {
 
         <div className="hidden md:block border-t">
           <NavigationMenu className="mx-auto">
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-6">
               {categories.map((category) => (
                 <NavigationMenuItem key={category.id}>
-                  <NavigationMenuTrigger className="hover:text-luxury-gold">
+                  <NavigationMenuTrigger className="h-12 text-base hover:text-luxury-gold bg-transparent hover:bg-transparent">
                     {category.name}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid grid-cols-2 gap-6 p-6 w-[500px]">
+                    <div className="grid grid-cols-2 gap-6 p-6 w-[500px] bg-white/95 backdrop-blur-sm">
                       {category.children.map((subCategory) => (
                         <div key={subCategory.id} className="space-y-2">
                           <Link
